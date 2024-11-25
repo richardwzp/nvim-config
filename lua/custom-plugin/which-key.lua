@@ -13,10 +13,14 @@
 -- after the plugin has been loaded:
 --  config = function() ... end
 
-return {              -- Useful plugin to show you pending keybinds.
+return { -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   opts = {
+    delay = function(ctx)
+      -- perhaps delay base on mode
+      return 100
+    end,
     icons = {
       -- set icon mappings to true if you have a Nerd Font
       mappings = vim.g.have_nerd_font,
@@ -56,7 +60,7 @@ return {              -- Useful plugin to show you pending keybinds.
 
     -- Document existing key chains
     spec = {
-      { '<leader>c', group = '[C]ode',     mode = { 'n', 'x' } },
+      { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
       { '<leader>d', group = '[D]ocument' },
       { '<leader>r', group = '[R]ename' },
       { '<leader>s', group = '[S]earch' },

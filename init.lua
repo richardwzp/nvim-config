@@ -84,8 +84,9 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
-require 'general-key-binds'
+-- we must do setting first, to set stuff like leaders.
 require 'general-settings'
+require 'general-key-binds'
 
 -- [[ install `lazy.nvim` plugin manager ]]
 --    see `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
