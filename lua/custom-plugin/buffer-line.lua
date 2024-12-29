@@ -92,8 +92,8 @@ return {
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   dependencies = 'nvim-tree/nvim-web-devicons',
   keys = {
-    { '<S-u>', ':BufferLineCycleNext<CR>', desc = 'left buffer window', silent = true },
-    { '<S-i>', ':BufferLineCyclePrev<CR>', desc = 'right buffer window', silent = true },
+    { '<S-u>', ':BufferLineCyclePrev<CR>', desc = 'left buffer window', silent = true },
+    { '<S-i>', ':BufferLineCycleNext<CR>', desc = 'right buffer window', silent = true },
   },
   config = function()
     require('bufferline').setup {
