@@ -18,8 +18,8 @@ return { -- Useful plugin to show you pending keybinds.
   event = 'VimEnter', -- Sets the loading event to 'VimEnter'
   opts = {
     delay = function(ctx)
-      -- perhaps delay base on mode
-      return 100
+      -- TODO: perhaps delay base on mode
+      return 500
     end,
     icons = {
       -- set icon mappings to true if you have a Nerd Font
