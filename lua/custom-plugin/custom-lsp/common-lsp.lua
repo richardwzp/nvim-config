@@ -83,6 +83,18 @@ return {
           --  Useful when your language has ways of declaring types without an actual implementation.
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
+          -- show diagnostic on hover. Lifted from lunarvim
+          map('gl', function()
+            local float = vim.diagnostic.config().float
+
+            if float then
+              local config = type(float) == 'table' and float or {}
+              config.scope = 'line'
+
+              vim.diagnostic.open_float(config)
+            end
+          end, 'Show Diagnostics hover')
+
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
@@ -216,6 +228,9 @@ return {
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        -- markdown will emit error since all docs run it
+        ensure_installed = { 'markdownlint' },
+        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
