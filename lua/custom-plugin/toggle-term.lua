@@ -12,6 +12,5 @@ return {
         terminal:set_mode 'i'
       end
     end)
-    vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
   end,
 }
