@@ -21,7 +21,7 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   keys = {
-    { '<Leader>e', ':NvimTreeToggle<CR>', desc = 'togglet nvim tree', silent = true },
+    { '<Leader>e', ':NvimTreeFindFileToggle<CR>', desc = 'togglet nvim tree', silent = true },
   },
   sort = {
     sorter = 'case_sensitive',
