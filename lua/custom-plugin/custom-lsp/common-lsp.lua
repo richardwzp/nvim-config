@@ -229,7 +229,7 @@ return {
 
       require('mason-lspconfig').setup {
         -- markdown will emit error since all docs run it
-        ensure_installed = { 'markdownlint' },
+        ensure_installed = {},
         automatic_installation = true,
         handlers = {
           function(server_name)
