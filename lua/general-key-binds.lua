@@ -32,7 +32,6 @@ vim.keymap.set('n', '<c-j>', '<c-w><c-j>', { desc = 'move focus to the lower win
 vim.keymap.set('n', '<c-k>', '<c-w><c-k>', { desc = 'move focus to the upper window' })
 
 -- more custom stuff
-vim.keymap.set('n', '<c-q>', ':q<cr>', { desc = 'quit current window' })
 vim.keymap.set('n', '<c-s>', ':w<cr>', { desc = 'save current window' })
 
 -- [[ basic autocommands ]]
