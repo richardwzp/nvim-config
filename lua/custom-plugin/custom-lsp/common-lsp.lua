@@ -104,6 +104,10 @@ return {
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
+          -- Cycle up and dow nfor diagnostics
+          map('<leader>lj', vim.diagnostic.goto_next, '[L]sp [J]ump to next diagnostic', { 'n', 'x' })
+          map('<leader>lk', vim.diagnostic.goto_prev, '[L]sp jump to previous diagnostic', { 'n', 'x' })
+
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
