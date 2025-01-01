@@ -37,6 +37,21 @@ return {
   },
   on_attach = my_on_attach,
   config = function()
-    require('nvim-tree').setup {}
+    -- run NvimTreeHiTest to show all related highlight group
+    vim.api.nvim_set_hl(0, 'NvimTreeGitDirty', { fg = '#1b8ecc' })
+    vim.api.nvim_set_hl(0, 'NvimTreeGitNew', { fg = '#22c7a0' })
+    require('nvim-tree').setup {
+      diagnostics = {
+        enable = true,
+        show_on_dirs = true,
+        severity = {
+          min = vim.diagnostic.severity.WARN,
+        },
+      },
+      renderer = {
+        highlight_git = 'name',
+        highlight_diagnostics = 'name',
+      },
+    }
   end,
 }
