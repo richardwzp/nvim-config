@@ -34,6 +34,16 @@ vim.keymap.set('n', '<c-k>', '<c-w><c-k>', { desc = 'move focus to the upper win
 -- more custom stuff
 vim.keymap.set('n', '<c-s>', ':w<cr>', { desc = 'save current window' })
 
+-- move entire lines up and down
+vim.keymap.set('v', '<M-p>', ":m '<-2<CR>gv=gv", { desc = 'move selected up in visual' })
+vim.keymap.set('v', '<M-n>', ":m '>+1<CR>gv=gv", { desc = 'move selected down in visual' })
+
+vim.keymap.set({ 'n' }, '<M-p>', ':m .-2<CR>==', { desc = 'move line up' })
+vim.keymap.set({ 'n' }, '<m-n>', ':m .+1<CR>==', { desc = 'move line down' })
+
+vim.keymap.set({ 'i' }, '<M-p>', '<ESC>:m .-2<CR>==', { desc = 'move line up' })
+vim.keymap.set({ 'i' }, '<M-n>', '<ESC>:m .+1<CR>==', { desc = 'move line down' })
+
 -- [[ basic autocommands ]]
 --  see `:help lua-guide-autocommands`
 
