@@ -1,4 +1,9 @@
 local options = {
+  hover = {
+    enabled = true,
+    delay = 200,
+    reveal = { 'close' },
+  },
   mode = 'buffers', -- set to "tabs" to only show tabpages instead
   numbers = 'none',
   close_command = 'bdelete! %d', -- can be a string | function, see "Mouse actions"
@@ -81,7 +86,7 @@ local options = {
   persist_buffer_sort = false, -- whether or not custom sorted buffers should persist
   -- can also be a table containing 2 custom separators
   -- [focused and unfocused]. eg: { '|', '|' }
-  separator_style = 'slant',
+  separator_style = { '|', '' },
   enforce_regular_tabs = false,
   always_show_bufferline = true,
   sort_by = 'insert_after_current',
@@ -96,8 +101,79 @@ return {
     { '<S-i>', ':BufferLineCycleNext<CR>', desc = 'right buffer window', silent = true },
   },
   config = function()
+    local selected_color = '#363636'
+    local separator_color = '#ab0a2d'
     require('bufferline').setup {
       options = options,
+
+      highlights = {
+
+        tab_selected = {
+          bg = selected_color,
+        },
+        separator = {
+          fg = separator_color,
+        },
+        separator_visible = {
+          fg = separator_color,
+        },
+        separator_selected = {
+          fg = separator_color,
+        },
+        tab_separator_selected = {
+          underline = true,
+        },
+        close_button_selected = {
+          bg = selected_color,
+        },
+        buffer_selected = {
+          bg = selected_color,
+          bold = true,
+        },
+        numbers_selected = {
+          bg = selected_color,
+        },
+        diagnostic_selected = {
+          bg = selected_color,
+        },
+        hint_diagnostic_selected = {
+          bg = selected_color,
+        },
+        hint_selected = {
+          bg = selected_color,
+        },
+
+        info_selected = {
+          bg = selected_color,
+        },
+        info_diagnostic_selected = {
+          bg = selected_color,
+        },
+        warning_selected = {
+          bg = selected_color,
+        },
+        warning_diagnostic_selected = {
+          bg = selected_color,
+        },
+        error_selected = {
+          bg = selected_color,
+        },
+        error_diagnostic_selected = {
+          bg = selected_color,
+        },
+        modified_selected = {
+          bg = selected_color,
+        },
+        duplicate_selected = {
+          bg = selected_color,
+        },
+        indicator_selected = {
+          bg = selected_color,
+        },
+        pick_selected = {
+          bg = selected_color,
+        },
+      },
     }
   end,
 }
