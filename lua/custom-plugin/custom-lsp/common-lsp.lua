@@ -1,3 +1,13 @@
+local function has_value(tab, val)
+  for index, value in ipairs(tab) do
+    if value == val then
+      return true
+    end
+  end
+
+  return false
+end
+
 -- LSP Plugins
 return {
   {
@@ -227,12 +237,16 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      local excluded_server = { 'jdtls' }
       require('mason-lspconfig').setup {
         -- markdown will emit error since all docs run it
-        ensure_installed = {},
-        automatic_installation = true,
+        ensure_installed = { 'jdtls' },
+        automatic_installation = false,
         handlers = {
           function(server_name)
+            if has_value(excluded_server, server_name) then
+              return
+            end
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
