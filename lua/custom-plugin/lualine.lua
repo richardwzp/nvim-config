@@ -5,6 +5,7 @@ return {
   config = function()
     require('lualine').setup {
       options = {
+        themable = true,
         icons_enabled = true,
         theme = 'auto',
         component_separators = { left = '', right = '' },
