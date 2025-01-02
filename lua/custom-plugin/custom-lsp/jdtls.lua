@@ -12,6 +12,7 @@ function jdtls_callback()
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
     cmd = {
       vim.fn.expand '$HOME/.local/share/nvim/mason/bin/jdtls',
+      ('--jvm-arg=-javaagent:%s'):format(vim.fn.expand '$HOME/.local/share/nvim/mason/packages/jdtls/lombok.jar'),
       '--jvm-arg=-Declipse.application=org.eclipse.jdt.ls.core.id1',
       '--jvm-arg=-Dosgi.bundles.defaultStartLevel=4',
       '--jvm-arg=-Declipse.product=org.eclipse.jdt.ls.core.product',
