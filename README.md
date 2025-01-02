@@ -1,4 +1,6 @@
-# kickstart.nvim
+# My Neovim Configuration
+
+my configuration is based on `kickstarter.nvim`. Awesome project, go TJ!
 
 ## Introduction
 
