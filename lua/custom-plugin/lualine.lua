@@ -3,11 +3,41 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
 
   config = function()
+    local auto_theme = require 'lualine.themes.auto'
+    local white = '#ffffff'
+
+    auto_theme.normal.a.bg = '#1d6cb5'
+    auto_theme.normal.a.fg = white
+
+    auto_theme.insert.a.bg = '#391db5'
+    auto_theme.insert.a.fg = white
+
+    auto_theme.visual.a.bg = '#bd5eff'
+    auto_theme.visual.a.fg = white
+
+    if auto_theme.normal.y == nil then
+      auto_theme.normal.y = {}
+    end
+    auto_theme.normal.y.fg = white
+
+    local tame_bg = '#2a2f33'
+    for _, con in ipairs { 'normal', 'visual', 'insert' } do
+      for _, letter in ipairs { 'b', 'c', 'x', 'y', 'z' } do
+        if auto_theme[con][letter] ~= nil then
+          auto_theme[con][letter].bg = tame_bg
+        end
+      end
+    end
+    auto_theme.inactive = {
+      c = {
+        bg = tame_bg,
+      },
+    }
     require('lualine').setup {
       options = {
         themable = true,
         icons_enabled = true,
-        theme = 'auto',
+        theme = auto_theme,
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
@@ -41,15 +71,15 @@ return {
             -- end,
           },
           { 'diff' },
-          {
-            'diagnostics',
-            symbols = {
-              error = ' ', -- xf659
-              warn = ' ', -- xf529
-              info = ' ', -- xf7fc
-              hint = ' ', -- xf835
-            },
-          },
+          -- {
+          --   'diagnostics',
+          --   symbols = {
+          --     error = ' ', -- xf659
+          --     warn = ' ', -- xf529
+          --     info = ' ', -- xf7fc
+          --     hint = ' ', -- xf835
+          --   },
+          -- },
         },
         lualine_c = { 'filename' },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
