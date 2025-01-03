@@ -245,7 +245,6 @@ return {
         handlers = {
           function(server_name)
             if has_value(excluded_server, server_name) then
-              print(server_name)
               return
             end
             local server = servers[server_name] or {}
