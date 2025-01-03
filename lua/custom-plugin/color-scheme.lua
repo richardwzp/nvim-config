@@ -5,7 +5,7 @@ return {
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
-    enabled = false,
+    -- enabled = false,
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
@@ -14,8 +14,22 @@ return {
       vim.cmd.colorscheme 'tokyonight-night'
 
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      -- vim.cmd.hi 'Comment gui=none'
     end,
+    opts = {
+      transparent = true, -- Enable this to disable setting the background color
+      styles = {
+        -- Style to be applied to different syntax groups
+        -- Value is any valid attr-list value for `:help nvim_set_hl`
+        comments = { italic = true },
+        keywords = { bold = true, italic = true },
+        functions = { bold = true },
+        variables = {},
+        -- Background styles. Can be "dark", "transparent" or "normal"
+        sidebars = 'dark', -- style for sidebars, see below
+        floats = 'dark', -- style for floating windows
+      },
+    },
   },
   {
     'scottmckendry/cyberdream.nvim',
@@ -26,11 +40,25 @@ return {
       vim.cmd.colorscheme 'cyberdream'
     end,
     opts = {
-      transparent = false,
+      transparent = true,
       italic_comments = true,
       hide_fillchars = false,
       borderless_telescope = true,
       terminal_colors = true,
+      theme = {
+        highlights = {
+          WinSeparator = {},
+        },
+        overrides = function(colors)
+          return {
+            lualine_c_normal = { bg = colors.bgHighlight },
+          }
+        end,
+        colors = {},
+      },
+      extensions = {
+        lualine = false,
+      },
     },
   },
 
@@ -41,6 +69,11 @@ return {
     lazy = false,
     init = function()
       vim.cmd.colorscheme 'kanagawa-wave'
+    end,
+    config = function()
+      require('kanagawa').setup {
+        transparent = true,
+      }
     end,
   },
 
@@ -88,7 +121,7 @@ return {
     priority = 1000,
     lazy = false,
     init = function()
-      -- require('nightfly').palette
+      -- vim.g.nightflyTransparent = true
       require('nightfly').custom_colors {
         bg = '#011a2e',
       }
@@ -99,6 +132,7 @@ return {
 
   {
     'catppuccin/nvim',
+    enabled = false,
     priority = 1000,
     lazy = false,
     init = function()
@@ -109,11 +143,11 @@ return {
         background = {
           dark = 'mocha',
         },
-        transparent_background = true,
+        transparent_background = false,
         integrations = {
           cmp = true,
           -- gitsigns = true,
-          nvimtree = true,
+          nvimtree = false,
           treesitter = true,
           notify = false,
           mini = {
@@ -123,6 +157,78 @@ return {
           which_key = false,
         },
       }
+    end,
+  },
+  {
+    'navarasu/onedark.nvim',
+    enabled = false,
+    priority = 1000,
+    config = function()
+      require('onedark').setup {
+        style = 'darker',
+        transparent = true,
+        code_style = {
+          keywords = 'bold,italic',
+          functions = 'bold',
+        },
+      }
+      require('onedark').load()
+    end,
+  },
+
+  {
+    'tiagovla/tokyodark.nvim',
+    enabled = false,
+    priority = 1000,
+    opts = {
+      transparent_background = true,
+      styles = {
+        comments = { italic = true }, -- style for comments
+        keywords = { bold = true, italic = true }, -- style for keywords
+        identifiers = { italic = true }, -- style for identifiers
+        functions = { bold = true }, -- style for functions
+        variables = {}, -- style for variables
+      },
+    },
+    init = function()
+      vim.cmd.colorscheme 'tokyodark'
+    end,
+    config = function()
+      local set_hl_ns = vim.api.nvim__set_hl_ns or vim.api.nvim_set_hl_ns
+      local create_namespace = vim.api.nvim_create_namespace
+      local highlight = vim.api.nvim_set_hl
+
+      local M = {}
+      local g, cmd = vim.g, vim.cmd
+
+      function M.tokyodark()
+        g.tokyodark_transparent_background = true
+        pcall(cmd, 'colorscheme tokyodark')
+      end
+
+      function _G.custom_highlights()
+        local ns = create_namespace 'tokyodark'
+        highlight(ns, 'Comment', { fg = '#FF00FF' })
+        -- ...
+        -- overwrite and add other highlights
+        set_hl_ns(ns)
+      end
+
+      function M.highlights()
+        cmd [[
+      augroup custom_theme_highlights
+        autocmd!
+        au ColorScheme * lua custom_highlights()
+        augroup END
+    ]]
+      end
+
+      function M.setup()
+        M.tokyodark()
+        M.highlights()
+      end
+
+      M.setup()
     end,
   },
 }
