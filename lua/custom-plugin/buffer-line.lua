@@ -16,7 +16,7 @@ local options = {
   -- the following line is deprecated, in favor of indicator
   -- indicator_icon = '▎',
   indicator = {
-    style = 'icon',
+    style = 'none',
     icon = '|',
   },
   buffer_close_icon = '',
@@ -86,8 +86,8 @@ local options = {
   persist_buffer_sort = false, -- whether or not custom sorted buffers should persist
   -- can also be a table containing 2 custom separators
   -- [focused and unfocused]. eg: { '|', '|' }
-  separator_style = { '|', '' },
-  enforce_regular_tabs = false,
+  separator_style = { '', '' },
+  enforce_regular_tabs = true,
   always_show_bufferline = true,
   sort_by = 'insert_after_current',
 }
