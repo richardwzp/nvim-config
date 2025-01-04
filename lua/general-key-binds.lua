@@ -44,6 +44,11 @@ vim.keymap.set({ 'n' }, '<m-n>', ':m .+1<CR>==', { desc = 'move line down' })
 vim.keymap.set({ 'i' }, '<M-p>', '<ESC>:m .-2<CR>==', { desc = 'move line up' })
 vim.keymap.set({ 'i' }, '<M-n>', '<ESC>:m .+1<CR>==', { desc = 'move line down' })
 
+-- run lua code
+vim.keymap.set({ 'v' }, '<leader>oo', ":'<,'>lua<CR>", { desc = 'run selected lua code' })
+vim.keymap.set({ 'n' }, '<leader>oo', "V:'<,'>lua<CR>", { desc = 'run selected lua code' })
+vim.keymap.set({ 'n' }, '<leader>of', ':%lua<CR>', { desc = 'run lua code on the page' })
+
 -- [[ basic autocommands ]]
 --  see `:help lua-guide-autocommands`
 
