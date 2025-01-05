@@ -22,8 +22,8 @@ return {
         -- Style to be applied to different syntax groups
         -- Value is any valid attr-list value for `:help nvim_set_hl`
         comments = { italic = true },
-        keywords = { bold = true, italic = true },
-        functions = { bold = true },
+        keywords = { bold = true },
+        functions = {},
         variables = {},
         -- Background styles. Can be "dark", "transparent" or "normal"
         sidebars = 'dark', -- style for sidebars, see below
@@ -35,9 +35,18 @@ return {
         colors.green1 = Util.darken(colors.green1, 1)
       end,
       on_highlights = function(hl, c)
-        hl.Boolean = { bold = true, fg = c.red }
+        local Util = require 'tokyonight.util'
 
+        hl.Boolean = { bold = true, fg = c.red1 }
+        hl.String = { fg = '#87743e', italic = true }
         hl['@operator'] = { bold = true, fg = c.red }
+        -- java field value
+        hl['@lsp.type.property'] = { fg = '#32b5cf' }
+        hl['Function'] = { fg = '#3569e8' }
+        hl['Type'] = { fg = '#d64bcb' }
+        hl['@type.definition'] = { fg = c.red }
+        hl['@type.builtin'] = { fg = '#c458bb', bold = true }
+        -- hl['@keyword'] = { fg = '#faa646', bold = true, italic = true }
         -- hl.TelescopeNormal = {
         --   bg = c.bg_dark,
         --   fg = c.fg_dark,
