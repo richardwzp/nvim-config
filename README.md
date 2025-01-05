@@ -1,6 +1,6 @@
 # My Neovim Configuration
 
-my configuration is based on `kickstarter.nvim`. Awesome project, go TJ!
+my configuration is based on `kickstarter.nvim`, with a lot of inspiration from `lunarvim` back when I used to use that distro. Awesome project, go TJ and chris@machine!
 
 ## Introduction
 
