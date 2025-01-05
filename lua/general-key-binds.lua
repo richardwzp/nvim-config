@@ -6,7 +6,7 @@
 vim.keymap.set('n', '<esc>', '<cmd>nohlsearch<cr>')
 
 -- diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'open diagnostic [q]uickfix list' })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'open [D]iagnostic [Q]uickfix list' })
 
 -- exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. otherwise, you normally need to press <c-\><c-n>, which
@@ -43,6 +43,9 @@ vim.keymap.set({ 'n' }, '<m-n>', ':m .+1<CR>==', { desc = 'move line down' })
 
 vim.keymap.set({ 'i' }, '<M-p>', '<ESC>:m .-2<CR>==', { desc = 'move line up' })
 vim.keymap.set({ 'i' }, '<M-n>', '<ESC>:m .+1<CR>==', { desc = 'move line down' })
+
+-- window quit
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>q', ':q<CR>', { desc = '[Q]uit window' })
 
 -- run lua code
 vim.keymap.set({ 'v' }, '<leader>oo', ":'<,'>lua<CR>", { desc = 'run selected lua code' })

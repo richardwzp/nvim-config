@@ -11,6 +11,6 @@ return {
         terminal:open()
         terminal:set_mode 'i'
       end
-    end)
+    end, { desc = 'open terminal' })
   end,
 }
