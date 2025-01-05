@@ -189,7 +189,7 @@ return {
       -- But for many setups, the LSP (`tsserver`) will work just fine
       -- tsserver = {},
       --
-      jedi_language_server = {},
+      pyright = {},
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
