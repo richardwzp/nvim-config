@@ -29,6 +29,20 @@ return {
         sidebars = 'dark', -- style for sidebars, see below
         floats = 'dark', -- style for floating windows
       },
+      on_colors = function(colors)
+        local Util = require 'tokyonight.util'
+        -- print(Util.darken(colors.green1, 1))
+        colors.green1 = Util.darken(colors.green1, 1)
+      end,
+      on_highlights = function(hl, c)
+        hl.Boolean = { bold = true, fg = c.red }
+
+        hl['@operator'] = { bold = true, fg = c.red }
+        -- hl.TelescopeNormal = {
+        --   bg = c.bg_dark,
+        --   fg = c.fg_dark,
+        -- }
+      end,
     },
   },
   {
