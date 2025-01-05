@@ -3,7 +3,19 @@ return {
   'j-hui/fidget.nvim',
   config = function()
     require('fidget').setup {
+      progress = {
+        ignore = {
+          function(msg)
+            return msg.lsp_client.name == 'jdtls' and (string.find(msg.title, 'Publish Diagnostics') or string.find(msg.title, 'Validate documents'))
+          end,
+        },
+        ignore_done_already = false, -- Ignore new tasks that are already complete
+        display = {
+          done_ttl = 3,
+        },
+      },
       notification = {
+        filter = vim.log.levels.INFO, -- Minimum notifications level
         window = {
           border = 'rounded',
           winblend = 50,
