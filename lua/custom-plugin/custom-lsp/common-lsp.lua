@@ -328,7 +328,21 @@ return {
           --     require('luasnip.loaders.from_vscode').lazy_load()
           --   end,
           -- },
+          'brenoprata10/nvim-highlight-colors',
         },
+        config = function()
+          local opts = {}
+          -- potentially useful, but the lsp auto-complete does not render color.
+          -- local suc, hcolors = pcall(require, 'nvim-highlight-colors')
+          -- if suc then
+          --   opts = {
+          --     formatting = {
+          --       format = hcolors.format,
+          --     },
+          --   }
+          -- end
+          require('cmp').setup(opts)
+        end,
       },
       'saadparwaiz1/cmp_luasnip',
 
