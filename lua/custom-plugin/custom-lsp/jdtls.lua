@@ -53,6 +53,45 @@ function jdtls_callback()
       bundles = {},
     },
   }
+
+  -- add auto command for adding package name
+  -- vim.api.nvim_create_autocmd('BufNew', {
+  --   desc = 'add skeleton when filetype is java',
+  --   pattern = { '*.java' },
+  --   group = vim.api.nvim_create_augroup('add-java-skeleton-new-file', { clear = true }),
+  --   callback = function() end,
+  -- })
+
+  local state = {}
+  vim.api.nvim_create_autocmd('LspNotify', {
+    callback = function(args)
+      local bufnr = args.buf
+      local client_id = args.data.client_id
+      local method = args.data.method
+      local params = args.data.params
+
+      -- do something with the notification
+      if method == 'workspace/didChangeWatchedFiles' then
+        for _, change in ipairs(params.changes) do
+          local path = change.uri:gsub('^file://', '')
+          if change.type == 1 and state[path] == nil and path:match '(.*)%.java' ~= nil then
+            state[path] = 1
+            -- TODO: error handling
+            vim.uv.fs_open(path, 'w', 420, function(_, fd)
+              local package_path, class_name = path:match '^.*java/(.*)/(.*).java'
+              package_path = string.gsub(package_path, '%/', '.')
+              local data_buf = 'package ' .. package_path .. ';\n\n' .. 'public class ' .. class_name .. ' {\n}'
+              -- TODO: error handling
+              vim.uv.fs_write(fd, data_buf, function(_)
+                vim.uv.fs_close(fd)
+              end)
+            end)
+          end
+        end
+        -- TODO: something that fires after 5 seconds if the size gets too big
+      end
+    end,
+  })
   -- This starts a new client & server,
   -- or attaches to an existing client & server depending on the `root_dir`.
   require('jdtls').start_or_attach(config)
