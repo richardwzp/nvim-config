@@ -57,9 +57,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
       defaults = {
         file_previewer = require('telescope.previewers').vim_buffer_cat.new,
         grep_previewer = require('telescope.previewers').vim_buffer_vimgrep.new,
+        layout_strategy = 'vertical',
         layout_config = {
-          horizontal = {
-            preview_cutoff = 1,
+          vertical = {
+            prompt_position = 'top',
+            preview_cutoff = 0,
           },
         },
       },
