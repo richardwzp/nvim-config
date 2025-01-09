@@ -31,18 +31,29 @@ vim.keymap.set('n', '<c-l>', '<c-w><c-l>', { desc = 'move focus to the right win
 vim.keymap.set('n', '<c-j>', '<c-w><c-j>', { desc = 'move focus to the lower window' })
 vim.keymap.set('n', '<c-k>', '<c-w><c-k>', { desc = 'move focus to the upper window' })
 
+-- split window
+vim.keymap.set('n', '<c-x>', '<c-w><c-s>', { desc = 'split window horizontally' })
+vim.keymap.set('n', '<c-v>', '<c-w><c-v>', { desc = 'split window vertically' })
+
+-- other window adjustement
+vim.keymap.set('n', 'T', '<c-w>T', { desc = 'break out into a new tab' })
+vim.keymap.set('n', '+', '<c-w>>', { desc = 'increase width' })
+vim.keymap.set('n', '_', '<c-w><', { desc = 'decrease width' })
+vim.keymap.set('n', '<M-=>', '<c-w>+', { desc = 'increase height' })
+vim.keymap.set('n', '<M-->', '<c-w>-', { desc = 'decrease height' })
+
 -- more custom stuff
 vim.keymap.set('n', '<c-s>', ':w<cr>', { desc = 'save current window' })
 
 -- move entire lines up and down
-vim.keymap.set('v', '<M-p>', ":m '<-2<CR>gv=gv", { desc = 'move selected up in visual' })
-vim.keymap.set('v', '<M-n>', ":m '>+1<CR>gv=gv", { desc = 'move selected down in visual' })
+vim.keymap.set('v', '<M-k>', ":m '<-2<CR>gv=gv", { desc = 'move selected up in visual' })
+vim.keymap.set('v', '<M-j>', ":m '>+1<CR>gv=gv", { desc = 'move selected down in visual' })
 
-vim.keymap.set({ 'n' }, '<M-p>', ':m .-2<CR>==', { desc = 'move line up' })
-vim.keymap.set({ 'n' }, '<m-n>', ':m .+1<CR>==', { desc = 'move line down' })
+vim.keymap.set({ 'n' }, '<M-k>', ':m .-2<CR>==', { desc = 'move line up' })
+vim.keymap.set({ 'n' }, '<m-j>', ':m .+1<CR>==', { desc = 'move line down' })
 
-vim.keymap.set({ 'i' }, '<M-p>', '<ESC>:m .-2<CR>==', { desc = 'move line up' })
-vim.keymap.set({ 'i' }, '<M-n>', '<ESC>:m .+1<CR>==', { desc = 'move line down' })
+vim.keymap.set({ 'i' }, '<M-k>', '<ESC>:m .-2<CR>==', { desc = 'move line up' })
+vim.keymap.set({ 'i' }, '<M-j>', '<ESC>:m .+1<CR>==', { desc = 'move line down' })
 
 -- window quit
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>q', ':q<CR>', { desc = '[Q]uit window' })
