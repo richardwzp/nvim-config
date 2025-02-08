@@ -23,7 +23,7 @@ function jdtls_callback()
       '--jvm-arg=java.base/java.util=ALL-UNNAMED',
       '--jvm-arg=--add-opens',
       '--jvm-arg=java.base/java.lang=ALL-UNNAMED',
-      '-data',
+      '--jvm-arg=data',
       workspace_dir,
     },
 
